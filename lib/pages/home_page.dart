@@ -20,6 +20,21 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+      body: Padding(
+        padding: EdgeInsets.all(10),
+        child: Card(
+          child: ListTile(
+            leading: Icon(Icons.search),
+            title: Text('Search'),
+            onTap: () {
+              showSearch(
+                context: context,
+                delegate: DataSearch(),
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 }

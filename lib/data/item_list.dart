@@ -1,4 +1,4 @@
-final city_names = [
+final items = [
   "Aberdeen",
   "Abilene",
   "Akron",

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:search_bar/data/city_names.dart';
+import 'package:search_bar/data/item_list.dart';
 
 class DataSearch extends SearchDelegate<String> {
-  List<String> recentCities = [];
+  List<String> recentItems = [];
 
   @override
   Widget buildLeading(BuildContext context) {
@@ -35,19 +35,18 @@ class DataSearch extends SearchDelegate<String> {
   Widget buildSuggestions(BuildContext context) {
     // show when someone searches for something
     final suggestionList = query.isEmpty
-        ? recentCities
-        : city_names
+        ? recentItems
+        : items
             .where((element) => element.toLowerCase().contains(query))
             .toList();
     return ListView.builder(
       itemCount: suggestionList.length,
       itemBuilder: (context, index) => ListTile(
-        leading: Icon(Icons.location_city),
         title: Text(suggestionList[index]),
         onTap: () {
           query = suggestionList[index];
-          recentCities.removeWhere((element) => element == query);
-          recentCities.insert(0, query);
+          recentItems.removeWhere((element) => element == query);
+          recentItems.insert(0, query);
           showResults(context);
         },
       ),
